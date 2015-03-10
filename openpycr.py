@@ -20,7 +20,8 @@ class CursesDisplay():
             if char != -1:
                 break
             S = self.dev.readstatus()
-            if S['secsleft'] == 0 and S['state'] == 'running':
+            if S['state'] == 'complete':
+                break
                 break
 
     def writeln(self,string):
