@@ -44,8 +44,8 @@ class OpenPCR:
         This can optionally send status messages (as a single string arg) to a callback.'''
         if not self.ready:
             raise OpenPCRError("Cannot send program as device is not ready.")
-
-        NewNonce = self.readstatus()['nonce'] + 1 #if CurrentNonce < 100 else 1 # Overflow; no need for excess digits.
+	
+        NewNonce = 0
         # OrderedDict preserves key order; may be critical for leading 's=ACGTC' signal.
         dissectedprogram = collections.OrderedDict([x.split("=",1) for x in program.split("&")])
         dissectedprogram['d'] = str(NewNonce)
