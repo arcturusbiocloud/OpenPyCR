@@ -54,6 +54,7 @@ class OpenPCR:
         # Wait 2s to let OpenPCR recover from sending program, 
         # then further 5s for program update.
         status_callback("Waiting for two seconds for OpenPCR to resume responding.")
+        print("Sending program to the OpenPCR ...")
         Status = time.sleep(2) # Now Status == None, not undefined.
         started_waiting = time.time()
         while time.time() - started_waiting < 5:
@@ -148,6 +149,7 @@ class OpenPCR:
             print(('Current Program: {program}\n'
                    "Step '{currentstep}' of cycle {cycle}\n"
                    "Currently: {job}\n"
-                   "Block: {blocktemp}°C, Lid: {lidtemp}°C\n"
-                   "Remaining Time: {timeleft}").format(**S))
+                   "State: {state}\n"
+                   "Block: {blocktemp}C, Lid: {lidtemp}C\n"
+                   "Estimated Remaining Time: {timeleft}").format(**S))
    
