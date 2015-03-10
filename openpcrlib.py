@@ -48,7 +48,7 @@ class OpenPCR:
         if not self.ready:
             raise OpenPCRError("Cannot send program as device is not ready.")
 
-        NewNonce = self.readstatus()['nonce'] + 1 if CurrentNonce < 100 else 1 # Overflow; no need for excess digits.
+        NewNonce = self.readstatus()['nonce'] + 1 #if CurrentNonce < 100 else 1 # Overflow; no need for excess digits.
         # OrderedDict preserves key order; may be critical for leading 's=ACGTC' signal.
         dissectedprogram = collections.OrderedDict([x.split("=",1) for x in program.split("&")])
         dissectedprogram['d'] = str(NewNonce)

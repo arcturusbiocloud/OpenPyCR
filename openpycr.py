@@ -19,6 +19,9 @@ class CursesDisplay():
             char = self.scr.getch()
             if char != -1:
                 break
+            S = self.dev.readstatus()
+            if S['secsleft'] == 0 and S['state'] == 'running':
+                break
 
     def writeln(self,string):
         self.scr.erase() # Clear window
