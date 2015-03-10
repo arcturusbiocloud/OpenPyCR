@@ -10,8 +10,6 @@ if "linux" not in sys.platform:
             "than linux, and there is no plan to support non-free/libre platforms.", file=sys.stderr)
 if sys.version_info[:2] < (3,3):
     # native posix_fadvise introduced in 3.3, can shim in with ctypes:
-    print("Your Python version is outdated and lacks the posix_fadvise system call in os.",
-          "Attempting to shim this in using ctypes..", file=sys.stderr)
     import ctypes
     try:
         os.POSIX_FADV_NORMAL     = 0
@@ -23,7 +21,6 @@ if sys.version_info[:2] < (3,3):
         # The above will (or should?) always work, so do that first.
         libc = ctypes.CDLL("libc.so.6")
         os.posix_fadvise = libc.posix_fadvise
-        print("posix_fadvise shim successful, nothing to see here. Consider updating Python anyway.", file=sys.stderr)
     except OSError:
         print("Attempted to open libc.so.6 to import the posix_fadvise system call failed.",
               "Reading from OpenPCR will not function correctly as disk/os level caching will interfere.",file=sys.stderr)
