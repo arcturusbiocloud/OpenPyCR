@@ -36,6 +36,7 @@ class CursesDisplay():
             PrettyStatus += 'Current Program: {0}\n'.format(S['program'])
             PrettyStatus += ' Step "{0}" of cycle {1}\n'.format(S['currentstep'],str(S['cycle']))
             PrettyStatus += ' Currently: {0}\n'.format(S['job'])
+            PrettyStatus += ' State: {0}\n'.format(S['state'])
             PrettyStatus += ' Block: {0}C, Lid: {1}C\n'.format(str(S['blocktemp']),str(S['lidtemp']))
             PrettyStatus += ' Remaining Time: {0}\n(Press any key to exit monitor mode)'.format(S['timeleft'])
         except KeyError:
