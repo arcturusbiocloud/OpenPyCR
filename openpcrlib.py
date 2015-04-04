@@ -73,7 +73,7 @@ class OpenPCR:
             status_callback("Program successfully sent.")
         else:
             status_callback("Program sent to device but device does not report receipt.")
-            raise OpenPCRError("Program sent to device but device does not report receipt.")
+            raise OpenPCRError("Program sent to device but device does not report receipt. status = %s" % Status)
 
     def _sendprogram(self,program):
         with open(os.path.join(self.devicepath,'CONTROL.TXT'), mode='w') as Fout:
